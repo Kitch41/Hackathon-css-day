@@ -141,8 +141,9 @@ function setRandomColor(data) {
     document.body.style.setProperty('--accent-color', `var(--${year}-color)`);
 }
 
+const carouselContainer = document.querySelector('.cards-section');
+
 function updateProgressBar() {
-    const carouselContainer = document.querySelector('.cards-section');
     const progressbar = document.querySelector('.progress-bar');
     
     const carouselWidth = carouselContainer.scrollWidth - carouselContainer.clientWidth;
@@ -161,7 +162,7 @@ function updateProgressBar() {
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
-  const carouselContainer = document.querySelector('.cards-section');
+  
 
   // Variable to track if the user is actively scrolling
   let isScrolling = false;
@@ -186,4 +187,25 @@ function updateProgressBar() {
     isScrolling = setTimeout(() => {
       carouselContainer.style.scrollSnapType = 'x mandatory';
     }, 1000); // Adjust the delay as needed
+  });
+
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+  
+  // Snap to the next item when next button is clicked
+  nextButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    carouselContainer.scrollBy({
+      left: carouselContainer.offsetWidth, // Scroll width of carousel container
+      behavior: 'smooth'
+    });
+  });
+  
+  // Snap to the previous item when previous button is clicked
+  prevButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    carouselContainer.scrollBy({
+      left: -carouselContainer.offsetWidth, // Scroll width of carousel container
+      behavior: 'smooth'
+    });
   });

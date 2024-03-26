@@ -27,7 +27,7 @@ body {
     width: 100vw;
     height: 100vh;
     max-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 main {
@@ -115,6 +115,9 @@ nav > ul > li> a:visited {
     border-radius: 10px;
     transform-origin: center top;
 
+
+
+
     & > ul {
         display: flex;
         column-gap: 3em;
@@ -201,21 +204,62 @@ nav > ul > li> a:visited {
 
     
 }
-.progress-container {
-    width: 75%;
-    height: 20px; 
-    background-color: #ddd;
-    margin-bottom: 3em;
-    border-radius: 10px;
-  }
 
-.progress-bar {
-    height: 100%;
-    background-color: var(--accent-color); 
-    width: 0%;
-    transition: 0.5s;
-    border-radius: 10px;
-  }
+.progress {
+
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin-bottom: 2em;
+
+    & .progress-container {
+        width: 75%;
+        height: 20px; 
+        background-color: #ddd;
+      
+        border-radius: 10px;
+
+        & .progress-bar {
+            height: 100%;
+            background-color: var(--accent-color); 
+            width: 0%;
+            transition: 0.5s;
+            border-radius: 10px;
+          }
+
+      }
+
+
+
+      a {
+        width: auto;
+        height: auto;
+
+        @media (max-width: 550px) {
+            display: none;
+        }
+
+        i {
+            color: white;
+            font-size: 2em;
+            transition: 0.4s;
+            
+            &:hover {
+                color: var(--accent-color);
+            }
+
+          }
+
+      }
+
+
+
+}
+
+
+
 
 
 .banner div {
