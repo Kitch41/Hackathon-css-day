@@ -1,7 +1,18 @@
 :root {
     --var : blue;
+    --grijs:#696969;
+    --oranje:#cd853f;
+    --2013-color:#ff0000;
+    --2014-color: #000080;
+    --2015-color:#6b8e23;
+    --2016-color:#ff69b4;
+    --2017-color:#daa520;
+    --2018-color:#ff6347;
+    --2019-color:#00bfff;
+    --2022-color:#3cb371;
+    --2023-color:#9932cc;
+    --2024-color:#cd853f;
 }
-
 
 * {
     margin: 0;
@@ -24,4 +35,9 @@ section:first-of-type {
         align-content: center;
         text-align: center;
     }
+}
+
+nav {
+    color:var(--grijs);
+
 }
