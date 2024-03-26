@@ -110,7 +110,7 @@ nav > ul > li> a:visited {
     scrollbar-width: none;
     transition: 0.6s;
     border-radius: 10px;
-    transform-origin: center top ;
+    transform-origin: center top;
 
     & > ul {
         display: flex;
