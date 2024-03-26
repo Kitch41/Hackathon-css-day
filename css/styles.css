@@ -10,10 +10,26 @@
 }
 
 
+/*  General elements */
+
+li {
+    list-style: none;
+}
+
+
+/* Navbar */
+nav {
+    color:var(--grijs);
+
+}
+
+
+
+/* Sections */
+
 section:first-of-type {
     width:100%;
     display: flex;
-    margin: 20% 10% 10% 10%;
     
     & div{
         border:black 1em solid;
@@ -24,4 +40,8 @@ section:first-of-type {
         align-content: center;
         text-align: center;
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
