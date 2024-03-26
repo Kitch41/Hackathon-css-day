@@ -13,7 +13,41 @@
     --2022-color:#3cb371;
     --2023-color:#9932cc;
     --2024-color:#cd853f;
+
 }
+
+
+/*  General elements */
+
+li {
+    list-style: none;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+main {
+    width: 100vw;
+    height: calc(100vh - 10em);
+    background-color: var(--grijs);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+h1 {
+   height: 3em;
+}
+
+/* Navbar */
+
+
 nav {
     background-color:var(--grijs);
     color:var(--white);
@@ -45,7 +79,7 @@ nav > ul > li > a {
 }
 nav > ul > li > a:hover {
     /*background-color: darkorchid  ;*/
-    border-bottom: 3px solid var(--2022-color);
+    border-bottom: 3px solid var(--accent-color);
 
 }
 nav > ul > li> a:visited {
@@ -59,52 +93,123 @@ nav > ul > li> a:visited {
 }
 
 
-/*  General elements */
-
-li {
-    list-style: none;
-}
-
-
-/* Navbar */
-nav {
-    color:var(--grijs);
-
-}
-
-
-
-/* Sections */
-
-section:first-of-type {
-    width:100%;
-    display: flex;
-    
-    & div{
-        border:black 1em solid;
-        height:15em;
-        width:15em;
-        margin: 1em;
-        justify-content: center;
-        align-content: center;
-        text-align: center;
-    }
-}
-
-
 
 .cards-section{
     display: block;
-    position:relative;
-    top:9em;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    width: 500px;
-    height: 25.3em;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* Maakt de scrollervaring soepeler op iOS-apparaten */
+    width: 85%;
+    height: 75%;
 
-    & li {
-        scroll-snap-align: start;
+    -webkit-overflow-scrolling: touch; 
+    padding: 3em 2em;
+    background-color: var(--accent-color);
+    border-left: 2em solid var(--accent-color);
+    border-right: 2em solid var(--accent-color);
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+    transition: 0.6s;
+    border-radius: 10px;
+    transform-origin: center top ;
+
+    & > ul {
+        display: flex;
+        column-gap: 3em;
+        width: auto;
+        transition: 0.6s;
+        
+        
+
+        & > li {
+            scroll-snap-align: start;
+            background-color: white;
+            min-width: 33%;
+            height: 20vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.6s;
+            box-shadow: 10px 10px 20px 0 #272727;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: -5px;
+                left: -5px;
+                right: -5px;
+                bottom: -5px;
+                transition: all .5s;
+                pointer-events: none;
+            }
+
+            @media (max-width: 1000px) {
+                min-width: 50%;
+                height: 30vw;
+            }
+
+            @media (max-width: 550px) {
+                min-width: calc(100% + 4em);
+                height: 60vw;
+            }
+
+
+            &:hover {
+                scale: 1.1;
+                transition: 0.6s;
+                height: 20em;
+
+
+                & img {
+                    margin-top: -50px;
+                    transition: 0.6s;
+                }
+
+                & ul {
+                    opacity: 1;
+                    transition: 0.6s;
+                }
+
+
+            }
+
+    
+            & img {
+                width: 75%;
+                
+                padding-top: 30px;
+                transition: 0.6s;
+            }
+
+            & h2 {
+                padding: 0.5em 0;
+            }
+
+            & ul {
+                opacity: 0;
+                transition: 0.6s;
+            }
+
+
+
+        }
+        
     }
+
+
+    
 }
+.progress-container {
+    width: 75%;
+    height: 20px; 
+    background-color: #ddd;
+    margin-bottom: 3em;
+    border-radius: 10px;
+  }
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--accent-color); 
+    width: 0%;
+    transition: 0.5s;
+    border-radius: 10px;
+  }
