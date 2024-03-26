@@ -8,7 +8,7 @@ async function fetchData() {
 
         const data = await response.json();
 
-        console.log(data)
+        // console.log(data)
         return data;
         
 
@@ -18,4 +18,16 @@ async function fetchData() {
     }
 }
 
-fetchData();
+
+async function useData() {
+
+    const data = await fetchData();
+    
+    console.log(data)
+
+    // call other functions here
+
+
+}
+
+useData();
