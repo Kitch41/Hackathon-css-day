@@ -1,6 +1,7 @@
 :root {
     --var : blue;
-    --grijs:#696969;
+    --white:#fff;
+    --grijs:#333333;
     --oranje:#cd853f;
     --2013-color:#ff0000;
     --2014-color: #000080;
@@ -13,11 +14,48 @@
     --2023-color:#9932cc;
     --2024-color:#cd853f;
 }
+nav {
+    background-color:var(--grijs);
+    color:var(--white);
+    width: 100%;
+    height:4em;
+    padding-top:1em;
+    display: flex;
+    justify-content: center;
 
+
+}
+nav > ul {
+    display: flex;
+    list-style: none;
+}
+nav > ul > li {
+    transition-property: border-bottom;
+    transition-duration: 1s;
+    border-bottom: none;
+}
+
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+    margin-left:2em;
+    font-size: 1.5em;
+
+
+}
+nav > ul > li > a:hover {
+    /*background-color: darkorchid  ;*/
+    border-bottom: 3px solid var(--2022-color);
+
+}
+nav > ul > li> a:visited {
+    display: none;
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Source Code Pro", monospace;
 }
 
 
@@ -53,7 +91,20 @@ section:first-of-type {
     }
 }
 
-nav {
-    color:var(--grijs);
 
+
+.cards-section{
+    display: block;
+    position:relative;
+    top:9em;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    width: 500px;
+    height: 25.3em;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Maakt de scrollervaring soepeler op iOS-apparaten */
+
+    & li {
+        scroll-snap-align: start;
+    }
 }
