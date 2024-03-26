@@ -41,11 +41,19 @@ useData();
 
 function generateCards(data) {
     Object.entries(data).forEach(([year, eventData]) => {
-        const cardSection = document.createElement("section");
-        cardSection.classList.add("card-section");
 
-        const cardDiv = document.createElement("div");
+        const randomint = Math.floor(Math.random() * 100) + 5670;
+
+        const cardSection = document.querySelector(".cards-ul");
+
+
+        const cardDiv = document.createElement("li");
         cardDiv.classList.add("card");
+
+        const image = document.createElement("img");
+        image.classList.add("cardimg");
+        image.src="https://cssday.nl/_img/2023/photos/400/cssday-2023-" + randomint + ".webp"
+        cardDiv.appendChild(image);
 
         const yearPara = document.createElement("p");
         yearPara.classList.add("year");
