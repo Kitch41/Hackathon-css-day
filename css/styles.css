@@ -23,16 +23,25 @@ li {
     list-style: none;
 }
 
+html {
+    height: 100%;
+    background-color: var(--grijs);
+}
+
+html:has( .flipped) {
+    height: 140%;
+    background-color: var(--grijs);
+}
+
 body {
     width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
+    height: 100%;
     overflow-x: hidden;
 }
 
 main {
     width: 100vw;
-    height: calc(100vh);
+    height: 100%;
     background-color: var(--grijs);
     display: flex;
     flex-direction: column;
@@ -115,6 +124,8 @@ nav > ul > li> a:visited {
 
     -webkit-overflow-scrolling: touch; 
     padding: 3em 2em;
+    margin-bottom: 2em;
+
     background-color: var(--accent-color);
     border-left: 2em solid var(--accent-color);
     border-right: 2em solid var(--accent-color);
@@ -368,6 +379,14 @@ main:has(.flipped) .progress {
         flex-direction: column;
         gap: 0.5em;
 
+        border-right: 2px solid #272727;
+        padding-right: 2em;
+
+        @media (max-width: 900px) {
+            border: none;
+            padding: 0;
+        }
+
         & i {
             margin-top: 0.15em;
             width: 1em;
@@ -507,8 +526,122 @@ main:has(.flipped) .progress {
 
 }
 
+/*MC TAB HOSTS*/
 
-/* H1 */
+.hosts-container {
+    display: flex;
+        gap: 1em;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        justify-content: space-evenly;
+        align-items: center;
+
+   & .hosts {
+    display: flex;
+        gap: 1em;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        
+    
+        /*justify-content: center;*/
+        /*align-content: center;*/
+    
+        & .mc {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            & img {
+                width: 200px;
+                height: 200px;
+            }
+    
+            & p , a {
+                text-align: center;
+    
+            }
+        }
+    }
+}
+
+.speakers-section {
+
+
+    & h2 {
+        margin-bottom: 1em;
+    }
+
+    & .speakers {
+        max-height: 500px;
+        overflow: scroll;
+        overflow-x: hidden;
+        display: flex;
+        flex-wrap: wrap;
+
+                /* width */
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: var(--grijs);
+            border-radius: 10px;
+        }
+        
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        & .speaker {
+            width: 33%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1em;
+
+            & p {
+                text-align: center;
+
+                &:nth-of-type(2) {
+                    font-size: 0.8rem;
+                }
+            }
+
+            @media (max-width: 1200px) {
+                width: 50%;
+            }
+
+            @media (max-width: 600px) {
+                width: 100%;
+            }
+
+            & img {
+                width: 33%;
+
+                @media (max-width: 600px) {
+                    width: 66%;
+                }
+            }
+
+        }
+    }
+
+}
+
+
 
 
 @keyframes typing {
