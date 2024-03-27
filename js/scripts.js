@@ -213,6 +213,7 @@ function updateProgressBar() {
 const flipcross = document.querySelector(".xmark")
 
   carouselContainer.addEventListener('click', function(event) {
+    toggleH1Animation();
     const clickedContainer = event.target.closest('.cards-section');
     const flippedContainer = document.querySelector('.cards-section.flipped');
 
@@ -229,16 +230,31 @@ const flipcross = document.querySelector(".xmark")
 
 // Event listener for the flipcross button
 flipcross.addEventListener('click', function(event) {
+
+  reverseToggleH1Animation();
     event.preventDefault(); // Prevents the default action of the button (e.g., form submission)
 
     // Stop event propagation to prevent triggering the click event on carouselContainer
     event.stopPropagation();
 
     // Remove the 'flipped' class from the flippedContainer
-    const flippedContainer = document.querySelector('.cards-section.flipped');
+    const flippedContainer = document.querySelector('.cards-section');
     if (flippedContainer) {
+
+      flippedContainer.style.animation = "none"
+      flippedContainer.offsetHeight;
+      flippedContainer.style.animation = "rotate 8s"
+
+      setTimeout(function() {
         flippedContainer.classList.remove('flipped');
         isKaartFlipped = false;
+    }, 3400);
+
+    setTimeout(() => {
+      flippedContainer.style.animation = ""
+    }, 8000);
+
+
     }
 });
 
@@ -263,3 +279,44 @@ function toggleMenu(event) {
 }
 
 hamburger.addEventListener("click", toggleMenu);
+
+
+const firstH1 = document.querySelector('.firsth1');
+const secondH1 = document.querySelector('.secondh1');
+
+function toggleH1Animation() {
+    // Play the animation in reverse for the .firsth1 element
+    firstH1.style.animation = 'typing-reverse 1s steps(15) forwards';
+
+    // Wait for the animation to finish (1 second)
+    setTimeout(() => {
+        // Hide the .firsth1 element
+        firstH1.style.display = 'none';
+
+        // Display the .secondh1 element
+        secondH1.style.display = 'flex';
+
+        // Play the typing animation for the .secondh1 element
+        secondH1.style.animation = 'typing2 2s steps(30)';
+    }, 1000); // Adjust the timeout value as needed
+}
+
+
+
+function reverseToggleH1Animation() {
+  // Play the reverse typing animation for the .secondh1 element
+  secondH1.style.animation = 'typing-reverse2 2s steps(30) forwards';
+
+  // Wait for the animation to finish (1 second)
+  setTimeout(() => {
+      // Hide the .secondh1 element
+      secondH1.style.display = 'none';
+
+      // Display the .firsth1 element
+      firstH1.style.display = 'flex';
+
+      // Play the typing animation for the .firsth1 element
+      firstH1.style.animation = 'typing 1s steps(15)';
+  }, 1000); // Adjust the timeout value as needed
+}
+
