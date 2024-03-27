@@ -125,6 +125,7 @@ nav > ul > li> a:visited {
     position: absolute;
     top: 27em;
     left: 8.5%;
+    transform-style: preserve-3d;
 
    &.flipped {
     animation: rotate 8s;
