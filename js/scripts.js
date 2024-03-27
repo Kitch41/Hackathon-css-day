@@ -35,21 +35,21 @@ useData();
 
 
 const imageUrls = [
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5674.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5729.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5802.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5671.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5711.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5752.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-6211.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-6218.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5789.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5770.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-6555.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-6567.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-6531.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5973.webp",
-    "https://cssday.nl/_img/2023/photos/400/cssday-2023-5962.webp"
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5674.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5729.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5802.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5671.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5711.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5752.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-6211.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-6218.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5789.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5770.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-6555.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-6567.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-6531.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5973.webp",
+    "https://cssday.nl/_img/2023/photos/1600/cssday-2023-5962.webp"
 ];
 
 function getRandomImageUrl(imageUrls) {
@@ -166,7 +166,7 @@ function updateProgressBar() {
 
   // Variable to track if the user is actively scrolling
   let isScrolling = false;
-  
+  if (!carouselContainer.classList.contains('flipped')) {
   carouselContainer.addEventListener('wheel', (event) => {
     // Disable scroll snap temporarily while the user is actively scrolling horizontally
     carouselContainer.style.scrollSnapType = 'none';
@@ -188,7 +188,7 @@ function updateProgressBar() {
       carouselContainer.style.scrollSnapType = 'x mandatory';
     }, 1000); // Adjust the delay as needed
   });
-
+  }
   const prevButton = document.getElementById('prevButton');
   const nextButton = document.getElementById('nextButton');
   
@@ -209,3 +209,57 @@ function updateProgressBar() {
       behavior: 'smooth'
     });
   });
+
+const flipcross = document.querySelector(".xmark")
+
+  carouselContainer.addEventListener('click', function(event) {
+    const clickedContainer = event.target.closest('.cards-section');
+    const flippedContainer = document.querySelector('.cards-section.flipped');
+
+    if (flippedContainer && clickedContainer !== flippedContainer) {
+        flippedContainer.classList.remove('flipped');
+        isKaartFlipped = false;
+    }
+
+    if (clickedContainer && !clickedContainer.classList.contains('flipped')) {
+        clickedContainer.classList.add('flipped'); // Toggle class directly
+        isKaartFlipped = true;
+    }
+});
+
+// Event listener for the flipcross button
+flipcross.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevents the default action of the button (e.g., form submission)
+
+    // Stop event propagation to prevent triggering the click event on carouselContainer
+    event.stopPropagation();
+
+    // Remove the 'flipped' class from the flippedContainer
+    const flippedContainer = document.querySelector('.cards-section.flipped');
+    if (flippedContainer) {
+        flippedContainer.classList.remove('flipped');
+        isKaartFlipped = false;
+    }
+});
+
+
+const menu = document.querySelector(".rechts ul");
+const menuItems = document.querySelectorAll(".rechts ul li");
+const hamburger= document.querySelector(".hamburger");
+const menuIcon = document.querySelector(".menuIcon");
+const modalmenu = document.querySelector(".modalmenu")
+
+function toggleMenu(event) {
+  event.preventDefault();
+  if (menu.classList.contains("showMenu")) {
+    menu.classList.remove("showMenu");
+    modalmenu.classList.add("invisible")
+    modalmenu.classList.remove("visible")
+  } else {
+    menu.classList.add("showMenu");
+    modalmenu.classList.remove("invisible")
+    modalmenu.classList.add("visible")
+  }
+}
+
+hamburger.addEventListener("click", toggleMenu);
