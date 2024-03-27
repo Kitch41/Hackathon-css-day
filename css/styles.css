@@ -13,7 +13,50 @@
     --2022-color:#3cb371;
     --2023-color:#9932cc;
     --2024-color:#cd853f;
+
 }
+
+
+/*  General elements */
+
+li {
+    list-style: none;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-x: hidden;
+}
+
+main {
+    width: 100vw;
+    height: calc(100vh);
+    background-color: var(--grijs);
+    display: flex;
+    flex-direction: column;
+    padding-top: 2em;
+    /* justify-content: center; */
+
+    
+}
+
+h1 {
+   height: 3em;
+}
+
+.visible {
+    display: flex!important;
+}
+
+.invisible {
+    display: none!important;
+}
+
+/* Navbar */
+
+
 nav {
     background-color: var(--grijs);
     color: var(--white);
@@ -63,40 +106,185 @@ nav > ul > li> a:visited {
     font-family: "Source Code Pro", monospace;
 }
 
-
-/*section:first-of-type {*/
-/*    width:100%;*/
-/*    display: flex;*/
-/*    margin: 20% 10% 10% 10%;*/
-/*    */
-/*    & div{*/
-/*        border:black 1em solid;*/
-/*        height:15em;*/
-/*        width:15em;*/
-/*        margin: 1em;*/
-/*        justify-content: center;*/
-/*        align-content: center;*/
-/*        text-align: center;*/
-/*    }*/
-/*}*/
-
-
-
 .cards-section{
     display: block;
-    position:relative;
-    top:9em;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    width: 500px;
-    height: 25.3em;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* Maakt de scrollervaring soepeler op iOS-apparaten */
+    width: 85%;
 
-    & li {
-        scroll-snap-align: start;
+    -webkit-overflow-scrolling: touch; 
+    padding: 3em 2em;
+    background-color: var(--accent-color);
+    border-left: 2em solid var(--accent-color);
+    border-right: 2em solid var(--accent-color);
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+    transition: 0.6s;
+    border-radius: 10px;
+    position: absolute;
+    top: 35em;
+    left: 8.5%;
+
+   &.flipped {
+    animation: rotate 8s;
+    overflow-x: scroll!important;
+
+
+    @media (max-width:900px) {
+        padding: 3em 0;
+        
+       
     }
+   }
+
+    & > ul {
+        display: flex;
+        column-gap: 3em;
+        width: auto;
+        transition: 0.6s;
+        transform-style: preserve-3d;
+        
+        
+
+        & > li {
+            scroll-snap-align: start;
+            background-color: white;
+            min-width: 33%;
+            height: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.6s;
+            box-shadow: 10px 10px 20px 0 #272727;
+            cursor: pointer;
+            
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: -5px;
+                left: -5px;
+                right: -5px;
+                bottom: -5px;
+                transition: all .5s;
+                pointer-events: none;
+                /* border: 2px solid white; */
+            }
+
+            @media (max-width: 1000px) {
+                min-width: 50%;
+                height: 30%;
+            }
+
+            @media (max-width: 550px) {
+                min-width: calc(100% + 4em);
+                height: 60%;
+            }
+
+
+            &:hover {
+                scale: 1.1;
+                transition: 0.6s;
+                height: 25%;
+
+
+                & img {
+                    margin-top: -50px;
+                    transition: 0.6s;
+                }
+
+                & ul {
+                    opacity: 1;
+                    transition: 0.6s;
+                    margin-bottom: 1em;
+                }
+
+
+            }
+
+    
+            & img {
+                width: 75%;
+                
+                padding-top: 30px;
+                transition: 0.6s;
+            }
+
+            & h2 {
+                padding: 0.5em 0;
+            }
+
+            & ul {
+                opacity: 0;
+                transition: 0.6s;
+            }
+
+
+
+        }
+        
+    }
+
+
+    
 }
+
+.progress {
+
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin-bottom: 2em;
+
+    & .progress-container {
+        width: 75%;
+        height: 20px; 
+        background-color: #ddd;
+      
+        border-radius: 10px;
+
+        & .progress-bar {
+            height: 100%;
+            background-color: var(--accent-color); 
+            width: 0%;
+            transition: 0.5s;
+            border-radius: 10px;
+          }
+
+      }
+
+
+
+      a {
+        width: auto;
+        height: auto;
+
+        @media (max-width: 550px) {
+            display: none;
+        }
+
+        i {
+            color: white;
+            font-size: 2em;
+            transition: 0.4s;
+            
+            &:hover {
+                color: var(--accent-color);
+            }
+
+          }
+
+      }
+
+
+
+}
+
+
+
+
 
 .banner div {
     display: flex;
@@ -118,7 +306,248 @@ nav > ul > li> a:visited {
 }
 
 
+
+/* Flipping */
+
+.back {
+    display: none;
+}
+
+.cards-section.flipped {
+
+    .front {
+        animation: hide 5.5s forwards;
+    }
+
+    .back {
+        display: block;
+        animation: display 8.2s forwards;
+    }
+}
+
+
+main:has(.flipped) .progress {
+    display: none;
+}
+
+
+/* Flipped side */
+
+.back {
+    width: 100%;
+    gap: 1em;
+
+    @media  (max-width: 900px) {
+        flex-direction: column;
+    }
+
+
+
+    & .links {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+        & i {
+            margin-top: 0.15em;
+            width: 1em;
+        }
+    
+        & img {
+            width: 100%;
+            max-height: 300px;
+         }
+
+         & ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+
+            & h2 {
+                font-size: 3em;
+            }
+
+            & li {
+                display: flex;
+                gap: 1em;
+            }
+
+
+         }
+
+         & a {
+            display: flex;
+            align-self: center;
+            justify-content: center;
+            width: 100%;
+            justify-self: center;
+            gap: 1em;
+            padding: 1em 1em;
+            color: var(--accent-color);
+            background-color: #272727;
+            border-radius: 10px;
+            margin-left: -1em;
+            text-decoration: none;
+            transition: 0.4s;
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+
+    & .rechts {
+        width: 100%;
+
+        & ul {
+            position: absolute;
+            display: flex;
+            top: 1em;
+            right: 0em;
+            flex-wrap: nowrap;
+            justify-content: center;
+
+            @media (max-width: 600px) {
+                background-color: #272727;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                height: 3em;
+
+            }
+
+
+            & li {
+
+
+
+                &:first-child {
+                    display: none;
+                    @media (max-width: 600px) {
+                        display: block;
+                    }
+                }
+
+                &:not(:first-child, :last-child) {
+                    @media (max-width: 600px) {
+                        display: none;
+                    }
+                }
+
+                & a {
+                    padding: 1em;
+                    text-decoration: none;
+                    color: var(--accent-color);
+                    background-color: #272727;
+                    transition: 0.4s;
+
+                    &:hover {
+                        color: white;
+                    }
+
+                    @media (max-width: 600px) {
+                        padding: 0;
+                        margin: 1em;
+
+                    }
+
+
+                }
+                &:last-child {
+                    margin-left: auto;
+                }   
+
+            }
+        }
+
+        & .modalmenu {
+            display: none;
+            position: absolute;
+            top: 4em ;
+            height: fit-content;
+            padding-bottom: 1em;
+            justify-content: flex-start;
+            flex-direction: column;
+            background-color: #272727;  
+
+            & li {
+                padding: 0.5em;                
+
+                &:last-child {
+                    margin-left:0;
+                }
+
+                &:not(:first-child, :last-child) {
+                    display: flex;
+                }
+            }
+
+        }
+    }
+
+}
+
+
+
 @keyframes typing {
     from { width: 0 }
     to { width:15% }
+}
+
+@keyframes rotate {
+    0% {
+        transform: scale(1) rotateY(0);
+    }
+
+    30% {
+        transform: scale(0.4) rotateY(0);
+    }
+    
+
+    70% {
+        transform: scale(0.4) rotateY(180deg) scaleX(-1);
+    }
+
+    100% {
+        transform: scale(1) rotateY(180deg) scaleX(-1);
+    }
+}
+
+@keyframes hide {
+    0% {
+        display: flex;
+    }
+
+    40% {
+        display: flex;
+    }
+    
+
+    60% {
+        display: none;
+    }
+
+    100% {
+       display: none;
+    }
+}
+
+@keyframes display {
+    0% {
+        display: none;
+    }
+
+    40% {
+        display: none;
+    }
+    
+
+    60% {
+        display: flex;
+    }
+
+    100% {
+       display: flex;
+    }
 }
