@@ -24,12 +24,12 @@ li {
 }
 
 html {
-    height: 100%;
+    height: 70%;
     background-color: var(--grijs);
 }
 
 html:has( .flipped) {
-    height: 140%;
+    height: 120%;
     background-color: var(--grijs);
 }
 
@@ -53,6 +53,7 @@ main {
 
 h1 {
    height: 3em;
+   color: var(--grijs);
 }
 
 .visible {
@@ -85,18 +86,21 @@ nav > ul {
     display: flex;
     align-items: center;
     list-style: none;
+    gap: 2em;
 }
 
 nav > ul > li {
     transition-property: border-bottom;
     transition-duration: 1s;
     border-bottom: none;
+
 }
 
 nav > ul > li > a {
+    
     color: white;
     text-decoration: none;
-    margin-left:2em;
+    
     font-size: 1.5em;
 
 
@@ -318,17 +322,21 @@ nav > ul > li> a:visited {
             font-size:2.5em;
             position: relative;
             height: auto;
+
+            
         }
     }
 
     & .firsth1 {
         display: flex;
         animation: typing 1s steps(15);
+        font-size: clamp(0.1vw, 4vw, 1em);
     }
 
     & .secondh1 {
         display: none;
         animation: typing2 2s steps(30);
+        font-size: clamp(0.1vw, 1.5vw, 1em);
     }
 
 
@@ -529,7 +537,8 @@ main:has(.flipped) .progress {
 /*MC TAB HOSTS*/
 
 .hosts-container {
-    display: flex;
+    /* display: flex; */
+    display: none;
         gap: 1em;
         flex-direction: column;
         width: 100%;
@@ -585,6 +594,7 @@ main:has(.flipped) .progress {
                 /* width */
         &::-webkit-scrollbar {
             width: 10px;
+            transition: 0.4s;
         }
         
         /* Track */
@@ -597,11 +607,13 @@ main:has(.flipped) .progress {
         &::-webkit-scrollbar-thumb {
             background: var(--grijs);
             border-radius: 10px;
+            transition: 0.4s;
         }
         
         /* Handle on hover */
         &::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: white;
+            transition: 0.4s;
         }
 
         & .speaker {
@@ -609,7 +621,7 @@ main:has(.flipped) .progress {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             margin-bottom: 1em;
 
             & p {

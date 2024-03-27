@@ -60,6 +60,9 @@ function getRandomImageUrl(imageUrls) {
     return randomImageUrl;
 }
 
+const speakerSection = document.querySelector('.speakers');
+const hostsSection = document.querySelector('.hosts');
+
 function generateCards(data) {
 
     const reversedDataEntries = Object.entries(data).reverse();
@@ -323,6 +326,8 @@ flipcross.addEventListener('click', function(event) {
       setTimeout(function() {
         flippedContainer.classList.remove('flipped');
         isKaartFlipped = false;
+        speakerSection.innerHTML = '';
+        hostsSection.innerHTML = '';
     }, 3400);
 
     setTimeout(() => {
@@ -415,7 +420,7 @@ function reverseToggleH1Animation() {
 function generatemc(year, data) {
 
   // Get the container where the MC sections will be added
-  const hostsSection = document.querySelector('.hosts');
+
 
   if(hostsSection) {
 
@@ -459,7 +464,7 @@ function generatemc(year, data) {
 
 function generateSpeakers(year, data) {
 
-  const speakerSection = document.querySelector('.speakers');
+ 
   if (speakerSection) {
 
   if (data[year] && data[year].speakers && data[year].speakers.length > 0) {
