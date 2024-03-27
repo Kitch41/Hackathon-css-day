@@ -5,60 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hackathon</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/55dc070dbb.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 <body>
-
+    <nav>
+        <img src="img/cssday-logo.png" alt="logo">
+        <ul>
+            <li>
+               <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Years</a>
+            </li>
+            <li>
+                <a href="#">Events</a>
+            </li>
+        </ul>
+    </nav>
+    
+    
+    
+    <!--banner-->
+    <section class="banner">
+        <div>
+            <h1>index.html</h1>
+        </div>
+        <div>
+            <h1>async function fetchData(<span>0</span>);</h1>
+        </div>
+    </section>
 
 
 <main>
-<h1>
-    Css Days!
-</h1>
 
-<section class="cards-section">
-    <ul class="cards-ul">
-
-
-<<<<<<< Updated upstream
-    <li class="card">
-        <p class="day">Dag</p>
-        <p class="year">Jaartal</p>
-        <p class="daynmr">dagnummer</p>
-        <p class="location">Locatie</p>
-        <p class="speakers">Aantal Speakers</p>
-        <p class="signedup">Al geschreven hoeveel? </p>
-    </li>
-
-    <li>
-        <p>Dag</p>
-        <p>Jaartal</p>
-        <p>dagnummer</p>
-        <p>Locatie</p>
-        <p>Aantal Speakers</p>
-        <p>Al geschreven hoeveel? </p>
-    </li>
-
-    <li>
-        <p>Dag</p>
-        <p>Jaartal</p>
-        <p>dagnummer</p>
-        <p>Locatie</p>
-        <p>Aantal Speakers</p>
-        <p>Al geschreven hoeveel? </p>
-    </li>
-
-=======
->>>>>>> Stashed changes
-</ul>
+<section class="progress">
+    <a href="#" id="prevButton"><i class="fa-solid fa-chevron-left"></i></a>
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+    <a href="#" id="nextButton"><i class="fa-solid fa-chevron-right"></i></a>
 </section>
 
-<section>
+<section class="cards-section">
 
+    <ul class="cards-ul front">
+
+
+    </ul>
+
+    <section class="back">
+        <section class="links">
+            <img src="./img/placeholderimg.webp">
+            <ul>
+                <li><h2 id="year">Year</h2></li>
+                <li><i class="fa-solid fa-location-crosshairs"></i><p id="venue">Venue</p></li>
+                <li><i class="fa-solid fa-calendar"></i><p id="date">Date</p></li>
+                <li><i class="fa-solid fa-money-bill"></i><p id="price">Price</p></li>
+            </ul>
+            <a href="https://webconferences.nl/tickets"><i class="fa-solid fa-cart-shopping"></i>Book Now</a>
+        </section>
+        <section class="rechts">
+            <ul>
+                <li><a href="#" class="hamburger"><i class="fa-solid fa-bars"></i></a></li>
+                <li><a href="#">Hosts</a></li>
+                <li><a href="#">Speakers</a></li>
+                <li><a href="#">Attendees</a></li>
+                <li><a href="#">Talks</a></li>
+                <li><a href="#" class="xmark"><i class="fa-solid fa-xmark"></i></a></li>
+            </ul>
+
+            <ul class="modalmenu">
+                <li><a href="#">Hosts</a></li>
+                <li><a href="#">Speakers</a></li>
+                <li><a href="#">Attendees</a></li>
+                <li><a href="#">Talks</a></li>
+            </ul>
+
+            <section class="hosts">
+
+            </section>
+
+            <section class="speakers">
+
+            </section>
+
+            <section class="attendees">
+
+            </section>
+            
+            <section class="talks">
+
+            </section>
+
+
+        </section>
+        
+    </section>
+
+
+
+</section>
+
+<section class="overlay">
+<!-- Swoop in section -->
 </section>
 
 </main>
     
-    <script src="./js/fetch.js"></script>
     <script src="./js/scripts.js"></script>
 </body>
 </html>
