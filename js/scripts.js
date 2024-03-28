@@ -1,3 +1,5 @@
+const body = document.querySelector('body');
+
 async function fetchData() {
     try {
         const response = await fetch("https://cssday.nl/data.json");
@@ -61,7 +63,7 @@ function getRandomImageUrl(imageUrls) {
 }
 
 const speakerSection = document.querySelector('.speakers');
-const hostsSection = document.querySelector('.hosts');
+const hostsSection = document.querySelector('.hosts-section');
 
 function generateCards(data) {
 
@@ -147,7 +149,8 @@ function generateCards(data) {
    
           fillback(year, data, thissrc);
           generatemc(year, data);
-          generateSpeakers(year, data)
+          generateSpeakers(year, data);
+          generateAttendees(year, data);
   
           toggleH1Animation();
           const clickedContainer = document.querySelector('.cards-section');
@@ -185,7 +188,15 @@ function generateCards(data) {
       console.log(data[year]);
       yearelement.innerHTML = year;
       venue.innerHTML = data[year].venue;
-      date.innerHTML = data[year].date[0] + " / " +  data[year].date[1];
+
+        const dates = data[year].date;
+      
+        if (dates.length === 2) {
+          date.innerHTML = data[year].date[0] + " / " +  data[year].date[1];
+        } else if (dates.length === 1) {
+          date.innerHTML = data[year].date[0];
+        }
+
       price.innerHTML ="€ " + data[year].price;
       backimg.src = src;
 
@@ -339,24 +350,32 @@ flipcross.addEventListener('click', function(event) {
 });
 
 
-const menu = document.querySelector(".rechts ul");
-const menuItems = document.querySelectorAll(".rechts ul li");
-const hamburger= document.querySelector(".hamburger");
-const menuIcon = document.querySelector(".menuIcon");
-const modalmenu = document.querySelector(".modalmenu")
+// Ensure DOM content is loaded before running the script
 
-function toggleMenu(event) {
-  event.preventDefault();
-  if (menu.classList.contains("showMenu")) {
-    menu.classList.remove("showMenu");
-    modalmenu.classList.add("invisible")
-    modalmenu.classList.remove("visible")
-  } else {
-    menu.classList.add("showMenu");
-    modalmenu.classList.remove("invisible")
-    modalmenu.classList.add("visible")
-  }
+  const menu = document.querySelector(".rechts ul");
+  const menuItems = document.querySelectorAll(".rechts ul li");
+  const hamburger = document.querySelector(".hamburger");
+  const menuIcon = document.querySelector(".menuIcon");
+  const modalmenu = document.querySelector(".modalmenu");
+
+  function toggleMenu(event) {
+    event.preventDefault();
+    if (menu.classList.contains("showMenu")) {
+        modalmenu.style.animation = "hidemodal 1s forwards";
+        setTimeout(() => {
+            menu.classList.remove("showMenu");
+            modalmenu.classList.add("invisible");
+        }, 1000);
+    } else {
+        modalmenu.style.animation = "showmodal 1s forwards";
+        modalmenu.classList.remove("invisible");
+        menu.classList.add("showMenu");
+    }
 }
+
+  // Bind toggleMenu function to hamburger menu icon click event
+  hamburger.addEventListener("click", toggleMenu);
+
 
 hamburger.addEventListener("click", toggleMenu);
 
@@ -400,27 +419,7 @@ function reverseToggleH1Animation() {
   }, 1000); // Adjust the timeout value as needed
 }
 
-
-// function generatemc(year, data) {
-
-  //generate this structure for each mc in data[year].mc this is an array.
-  //then fill the img src with data[year].mc[index].avatar
-  //then fill the p with id name with data[year].mc[index].name
-  //then fill the a href with id=link with data[year].mc[index].link
-
-//   <section class="hosts">
-//   <section class="mc" id="mc">
-//       <img src="img/placeholderimg.webp" id="avatar" alt="Spreker">
-//       <p id="name">/Naam/</p>
-//       <a href="" id="link">/Naam url/</a>
-//   </section>
-// </section>
-// }
-
 function generatemc(year, data) {
-
-  // Get the container where the MC sections will be added
-
 
   if(hostsSection) {
 
@@ -454,6 +453,7 @@ function generatemc(year, data) {
       // Append the MC section to the hosts section
       hostsSection.appendChild(mcSection);
     });
+    // console.log("generated hosts for: " + year)
   } else {
     // If no MC data is available for the specified year, display a message
     hostsSection.textContent = 'No MCs available for this year.';
@@ -497,6 +497,7 @@ function generateSpeakers(year, data) {
       // Append the speaker section to the speakers section
       speakerSection.appendChild(speakerDiv);
     });
+    // console.log("generated speakers for: " + year)
   } else {
     // If no speaker data is available for the specified year, display a message
     speakerSection.textContent = 'No speakers available for this year.';
@@ -504,3 +505,112 @@ function generateSpeakers(year, data) {
 
 }
 }
+
+function generateAttendees(year, data) {
+  const attendeesDataCountries = data[year]?.attendees?.countries;
+  const attendeesData = data[year]?.attendees;
+  const existingAttendeesSection = document.querySelector('.attendees');
+
+  if (!attendeesDataCountries) {
+    existingAttendeesSection.textContent = 'No attendees data available for this year.';
+    return;
+  }
+
+  // Clear existing content
+  existingAttendeesSection.innerHTML = '';
+
+  // Create and configure the side section
+  const sideSection = document.createElement('section');
+  sideSection.classList.add('side');
+
+  const totalAttendeesPara = document.createElement('p');
+  totalAttendeesPara.id = 'totalattendees';
+  totalAttendeesPara.textContent = 'Total Attendees: ' + attendeesData.count;
+  sideSection.appendChild(totalAttendeesPara);
+
+  const countPara = document.createElement('p');
+  countPara.id = 'count';
+  countPara.textContent = 'Total countries: ' + Object.keys(attendeesDataCountries).length;
+  sideSection.appendChild(countPara);
+
+  existingAttendeesSection.appendChild(sideSection);
+
+  // Create and configure the countries section
+  const countriesSection = document.createElement('section');
+  countriesSection.classList.add('countries');
+
+  for (const country in attendeesDataCountries) {
+    if (country !== 'totalAttendees') {
+      const countryDiv = document.createElement('div');
+      countryDiv.classList.add('country');
+      countryDiv.classList.add(`country-${country}`);
+
+      const lowercasecountry = country.toLowerCase();
+
+      const img = document.createElement('img');
+      img.src = 'img/countries/' + lowercasecountry + '.png';
+      countryDiv.appendChild(img);
+
+      const amountPara = document.createElement('p');
+      amountPara.id = `amount-${country}`;
+      amountPara.textContent = country + ": " + attendeesDataCountries[country];
+      countryDiv.appendChild(amountPara);
+
+      countriesSection.appendChild(countryDiv);
+    }
+  }
+
+  existingAttendeesSection.appendChild(countriesSection);
+}
+
+//Section show back
+const speakerslinks = document.querySelectorAll('.speakerslink');
+const hostslinks = document.querySelectorAll('.hostslink');
+const attendeeslinks = document.querySelectorAll('.attendeeslink');
+
+const speakerscontainer = document.querySelector('.speakers-section');
+const hostscontainer = document.querySelector('.hosts-container');
+const attendeescontainer = document.querySelector('.attendees-section');
+
+function checkCurrentPage() {
+  const currentpage = body.classList.value;
+  let currentpagecontainer;
+
+  if (currentpage === 'speakers') {
+    currentpagecontainer = speakerscontainer;
+  } else if (currentpage === 'hosts') {
+    currentpagecontainer = hostscontainer;
+  } else if (currentpage === 'attendees') {
+    currentpagecontainer = attendeescontainer;
+  }
+  return currentpagecontainer;
+}
+
+function handleLinkClick(link, targetClass) {
+  link.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const currentpagecontainer = checkCurrentPage();
+    if (!body.classList.contains(targetClass)) {
+      currentpagecontainer.style.animation = "dissapear 1s forwards";
+
+      setTimeout(() => {
+        currentpagecontainer.style.animation = ""; // Reset animation
+        body.removeAttribute("class");
+        body.classList.add(targetClass);
+      }, 3000);
+    }
+  });
+}
+
+speakerslinks.forEach(link => {
+  handleLinkClick(link, "speakers");
+});
+
+hostslinks.forEach(link => {
+  handleLinkClick(link, "hosts");
+});
+
+attendeeslinks.forEach(link => {
+  handleLinkClick(link, "attendees");
+});
