@@ -56,6 +56,12 @@ h1 {
    color: var(--grijs);
 }
 
+@supports (color-contrast) {
+    h1 {
+        color: color-contrast( var(--accent-color) vs var(--grijs), white )
+     }
+   }
+
 .visible {
     display: flex!important;
 }
