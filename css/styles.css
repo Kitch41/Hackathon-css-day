@@ -530,6 +530,10 @@ main:has(.flipped) .progress {
 
             animation: showmodal 1s;
 
+            @media (min-width: 900px) {
+                display: none;
+            }
+
             & li {
                 padding: 0.5em;                
 
