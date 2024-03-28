@@ -24,7 +24,7 @@ async function useData() {
 
     const data = await fetchData();
 
-    console.log(data)
+    // console.log(data)
 
     generateCards(data);
 
@@ -170,7 +170,7 @@ function generateCards(data) {
     
     // Define another function to use the year value
     function fillback(year, data, src) {
-        console.log("Year received in another function:", year);
+        console.log("Year selected:", year);
         
       // replace shit with good year
 
@@ -185,7 +185,7 @@ function generateCards(data) {
       const price = document.getElementById("price");
       const backimg = document.getElementById("backimg");
 
-      console.log(data[year]);
+      // console.log(data[year]);
       yearelement.innerHTML = year;
       venue.innerHTML = data[year].venue;
 
@@ -416,7 +416,7 @@ function reverseToggleH1Animation() {
 
       // Play the typing animation for the .firsth1 element
       firstH1.style.animation = 'typing 1s steps(15)';
-  }, 1000); // Adjust the timeout value as needed
+  }, 2000); // Adjust the timeout value as needed
 }
 
 function generatemc(year, data) {
@@ -598,7 +598,7 @@ function handleLinkClick(link, targetClass) {
         currentpagecontainer.style.animation = ""; // Reset animation
         body.removeAttribute("class");
         body.classList.add(targetClass);
-      }, 3000);
+      }, 1000);
     }
   });
 }
